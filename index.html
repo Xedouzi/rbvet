@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#FFFFFF">
+<title>RB Vet | Veterinária e pet shop em Cravinhos, SP</title>
+<meta name="description" content="Clínica veterinária e pet shop em Cravinhos: consultas, vacinas, atendimento em casa, banho e tosa. Duas unidades: Rua XV de Novembro, 791 e Av. Pedro Duarte Amoroso, 156.">
+<!-- DEMO: remover a linha abaixo quando publicar no dominio definitivo do cliente -->
+<meta name="robots" content="noindex, nofollow">
+<!-- logo tirado de rbvet.com.br (assets/images/logos/logo_rb_pequena_v1.png), fundo branco removido -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="icone-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "VeterinaryCare",
+      "name": "RB Vet Clínica Veterinária",
+      "telephone": "+55-16-97403-4986",
+      "address": { "@type": "PostalAddress", "streetAddress": "Rua XV de Novembro, 791 - Centro", "addressLocality": "Cravinhos", "addressRegion": "SP", "postalCode": "14140-000", "addressCountry": "BR" },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "13:30" }
+      ],
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "28" }
+    },
+    {
+      "@type": "PetStore",
+      "name": "RB Vet Pet Shop",
+      "telephone": "+55-16-99614-8486",
+      "address": { "@type": "PostalAddress", "streetAddress": "Av. Pedro Duarte Amoroso, 156", "addressLocality": "Cravinhos", "addressRegion": "SP", "postalCode": "14140-000", "addressCountry": "BR" }
+    }
+  ]
+}
+</script>
+<style>
+  /* cores medidas no logo da RB Vet (escudo marinho, faixa azul, cachorro dourado, contorno verde).
+     Publico: 20-30 anos, primeiro pet, sem saber onde levar pra consulta ou banho.
+     Marinho nos titulos, azul no destaque; dourado e verde so em detalhe pequeno
+     (bloco grande marinho + dourado vira cliche de escritorio de advocacia). */
+  :root {
+    color-scheme: only light;
+    --papel: #FFFFFF;
+    --ceu: #EDF3F9;           /* azul do logo bem clarinho */
+    --ceu-2: #D6E4F2;
+    --tinta: #1A1F2B;
+    --tinta-2: #4A5263;       /* 7.9:1 no branco */
+    --marinho: #0F2957;       /* do logo: 14:1 no branco */
+    --azul: #1D5793;          /* do logo: 7.4:1 no branco */
+    --azul-2: #174878;
+    --dourado: #EB9F1B;       /* do logo: so enfeite, nunca texto no branco */
+    --verde: #7AA747;         /* do logo: so enfeite */
+    --zap: #0E7C3F;           /* 5.3:1 com texto branco */
+    --zap-2: #0A6A35;
+    --linha: #D6DCE6;
+    --max: 1240px;
+    --raio: 22px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-tap-highlight-color: rgba(29,87,147,.15); }
+  body {
+    font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    font-size: 1.125rem; line-height: 1.6;
+    color: var(--tinta); background: var(--papel);
+  }
+  h1, h2, h3, .faixa p { font-family: "Bricolage Grotesque", "Segoe UI", sans-serif; font-weight: 800; letter-spacing: -.015em; color: var(--marinho); }
+  h1, h2, h3 { text-wrap: balance; }
+  a, button, label { touch-action: manipulation; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--azul); outline-offset: 3px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+  .icone { width: 1.5rem; height: 1.5rem; flex: none; }
+
+  .pular { position: absolute; left: 1rem; top: -4rem; z-index: 20; padding: .75rem 1rem; background: var(--marinho); color: #fff; font-weight: 700; border-radius: 8px; }
+  .pular:focus { top: 1rem; }
+
+  /* o que a RB Vet ainda precisa confirmar: sai antes de publicar no dominio deles */
+  .a-preencher { background: var(--ceu-2); border-bottom: 2px dashed var(--azul); padding: 0 .2em; }
+
+  /* ---------- botoes ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    min-height: 56px; padding: .75rem 1.5rem; border-radius: 999px; border: 0; cursor: pointer;
+    font: inherit; font-weight: 700; font-size: 1.15rem; text-decoration: none; text-align: center;
+    transition: background-color .25s ease, color .25s ease, transform .2s ease;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn-zap { background: var(--zap); color: #fff; }
+  .btn-zap:hover { background: var(--zap-2); }
+  .btn-tel { background: var(--papel); color: var(--marinho); box-shadow: inset 0 0 0 2px var(--marinho); }
+  .btn-tel:hover { background: var(--marinho); color: #fff; }
+  .btn-claro { background: #fff; color: var(--marinho); }
+  .btn-claro .icone { color: var(--zap); }
+  .btn-claro:hover { background: var(--ceu); }
+
+  /* ---------- cabecalho ---------- */
+  .topo { padding: .5rem 0; border-bottom: 1px solid var(--linha); }
+  .topo .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; }
+  .logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; padding: .25rem 0; }
+  .logo img { display: block; width: auto; height: 72px; }
+  .logo span { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.35rem; line-height: 1.05; color: var(--marinho); }
+  .logo small { display: block; font-family: "Atkinson Hyperlegible", sans-serif; font-weight: 400; font-size: 1rem; color: var(--tinta-2); letter-spacing: 0; }
+  .topo ul { list-style: none; display: flex; gap: 1.75rem; font-weight: 700; }
+  .topo nav a { display: inline-block; padding: .7rem 0; text-decoration: none; color: var(--tinta-2); transition: color .25s ease; }
+  .topo nav a:hover { color: var(--azul); text-decoration: underline; text-underline-offset: 5px; }
+
+  /* ---------- espacos de foto ---------- */
+  .foto {
+    border-radius: var(--raio); background: var(--ceu);
+    border: 2px dashed #93B3D3; display: grid; place-items: center; text-align: center;
+    padding: 1rem; color: var(--tinta-2); font-size: 1rem; line-height: 1.35;
+  }
+  .foto svg { width: 2.25rem; height: 2.25rem; display: block; margin: 0 auto .5rem; color: var(--azul); }
+  .foto strong { display: block; color: var(--tinta); font-size: 1.05rem; }
+
+  /* ---------- abertura ----------
+     computador:  [ status / titulo / texto / botoes ] [ mosaico de 3 fotos ]
+     celular:     status, titulo, texto, botoes, mosaico */
+  .hero { padding: 3rem 0 4rem; }
+  .hero > .wrap { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.15fr); gap: 3rem 3.5rem; align-items: center; }
+
+  .status { display: flex; align-items: center; gap: .65rem; max-width: 100%; font-weight: 700; font-size: 1.15rem; line-height: 1.3; }
+  .status::before { content: ""; width: .8rem; height: .8rem; border-radius: 50%; flex: none; background: #9AA1AD; }
+  .status.is-open { color: #0B6B36; }
+  .status.is-open::before { background: #16A34A; box-shadow: 0 0 0 5px rgba(22,163,74,.18); }
+
+  .hero h1 {
+    margin-top: 1rem;
+    font-size: clamp(2.5rem, 5.6vw, 4.3rem); line-height: 1.02;
+    max-width: 13ch; overflow-wrap: break-word; hyphens: auto;
+  }
+  .hero .lead { margin-top: 1.25rem; font-size: 1.3rem; color: var(--tinta-2); max-width: 36ch; }
+  .nota { margin-top: .9rem; color: var(--tinta-2); display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+  .nota strong { color: var(--tinta); }
+  .estrelas { color: var(--dourado); letter-spacing: .05em; font-size: 1.15rem; }   /* enfeite: a nota vem escrita do lado */
+  .botoes { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .9rem; }
+
+  .mosaico { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-rows: 1fr 1fr; gap: 1rem; aspect-ratio: 1 / 1; }
+  .mosaico .foto:first-child { grid-row: span 2; }
+
+  /* ---------- faixa do atendimento em casa ---------- */
+  .faixa { background: var(--marinho); color: #fff; padding: 3rem 0; }
+  .faixa .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem 3rem; flex-wrap: wrap; }
+  .faixa p { color: #fff; font-size: clamp(2rem, 4.4vw, 3.1rem); line-height: 1.05; max-width: 18ch; }
+  .faixa .sub { font-family: inherit; font-weight: 400; letter-spacing: 0; font-size: 1.2rem; color: #C8D3E6; max-width: 34ch; line-height: 1.5; margin-top: .6rem; }
+  .faixa :focus-visible { outline-color: #fff; }
+
+  /* ---------- secoes ---------- */
+  section { padding: 4.5rem 0; }
+  section.alt { background: var(--ceu); }
+  section.alt .foto { background: #fff; }
+  h2 { font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1.08; margin-bottom: .75rem; }
+  .intro { color: var(--tinta-2); max-width: 54ch; margin-bottom: 2.25rem; font-size: 1.2rem; }
+
+  /* ---------- duas unidades: o que da RB Vet e diferente ---------- */
+  .unidades { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  .unidade { background: #fff; border-radius: var(--raio); padding: 2rem; border-top: 6px solid var(--azul); }
+  .unidade.pet { border-top-color: var(--verde); }
+  .unidade .qual { font-weight: 700; color: var(--tinta-2); }
+  .unidade h3 { font-size: 1.9rem; line-height: 1.1; margin: .2rem 0 .6rem; }
+  .unidade .onde { font-weight: 700; font-size: 1.15rem; }
+  .unidade ul { list-style: none; margin: 1.25rem 0; display: grid; gap: .45rem; }
+  .unidade li { display: flex; gap: .6rem; align-items: baseline; }
+  .unidade li::before { content: ""; width: .55rem; height: .55rem; border-radius: 50%; background: var(--azul); flex: none; transform: translateY(-.1rem); }
+  .unidade.pet li::before { background: var(--verde); }
+  .unidade .status { margin-top: .75rem; }
+  .unidade .acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+
+  /* ---------- monte o pedido ---------- */
+  .pedido { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 2rem 3rem; align-items: start; }
+  .pedido fieldset { border: 0; margin-bottom: 1.75rem; min-width: 0; }
+  .pedido fieldset[hidden] { display: none; }
+  .pedido legend { font-weight: 700; font-size: 1.2rem; margin-bottom: .75rem; }
+  .opcoes { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .opcao { position: relative; max-width: 100%; }
+  .opcao input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .opcao span {
+    display: inline-flex; align-items: center; gap: .5rem; min-height: 48px; max-width: 100%; padding: .5rem 1.15rem;
+    border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 2px var(--linha);
+    font-weight: 700; cursor: pointer; user-select: none;
+    transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+  }
+  .opcao span::before {
+    content: ""; width: .95rem; height: .95rem; border-radius: 50%; flex: none;
+    box-shadow: inset 0 0 0 2px #9AA1AD; transition: box-shadow .2s ease, background-color .2s ease;
+  }
+  .opcao span:hover { box-shadow: inset 0 0 0 2px var(--azul); }
+  .opcao input:checked + span { background: var(--azul); color: #fff; box-shadow: inset 0 0 0 2px var(--azul); }
+  .opcao input:checked + span::before { background: #fff; box-shadow: inset 0 0 0 4px #fff; }
+  .opcao input:focus-visible + span { outline: 3px solid var(--azul); outline-offset: 3px; }
+  .nome-pet { display: block; font-weight: 700; font-size: 1.2rem; margin-bottom: .6rem; }
+  .nome-pet + input {
+    width: 100%; max-width: 22rem; min-height: 52px; padding: .6rem 1rem; font: inherit;
+    border: 2px solid var(--linha); border-radius: 14px; background: #fff; color: var(--tinta);
+  }
+  .nome-pet + input:focus { border-color: var(--azul); outline: none; }
+  .nome-pet + input:focus-visible { outline: 3px solid var(--azul); outline-offset: 2px; }
+
+  .mensagem { position: sticky; top: 1.5rem; background: #fff; border-radius: var(--raio); padding: 1.5rem; box-shadow: 0 1px 0 var(--linha), 0 10px 30px rgba(15,41,87,.08); }
+  .mensagem h3 { font-size: 1.3rem; margin-bottom: .75rem; }
+  /* pra qual unidade vai: muda junto com a escolha do servico */
+  .destino { display: flex; gap: .6rem; align-items: flex-start; margin-bottom: .9rem; padding: .75rem .9rem; border-radius: 14px; background: var(--ceu); font-size: 1rem; line-height: 1.4; }
+  .destino::before { content: ""; width: .7rem; height: .7rem; border-radius: 50%; background: var(--azul); flex: none; margin-top: .35rem; }
+  .destino.pet::before { background: var(--verde); }
+  .destino strong { display: block; color: var(--marinho); }
+  .balao {
+    display: block; background: #DCF8C6; color: var(--tinta); padding: .9rem 1.1rem; border-radius: 16px 16px 4px 16px;
+    font-size: 1.05rem; line-height: 1.45; min-height: 4.5rem; overflow-wrap: anywhere;
+  }
+  .mensagem .btn { width: 100%; margin-top: 1.1rem; }
+  .mensagem small { display: block; margin-top: .75rem; color: var(--tinta-2); font-size: 1rem; }
+
+  /* ---------- avaliacoes do Google (texto real, resumido) ---------- */
+  .avaliacoes { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+  .avaliacoes li { padding-top: 1.25rem; border-top: 3px solid var(--dourado); }
+  .avaliacoes blockquote { font-size: 1.25rem; line-height: 1.45; color: var(--tinta); }
+  .avaliacoes cite { display: block; margin-top: .75rem; font-style: normal; color: var(--tinta-2); }
+  .avaliacoes-fonte { margin-top: 1.5rem; }
+  .avaliacoes-fonte a { display: inline-block; padding: .7rem 0; font-weight: 700; color: var(--azul); text-underline-offset: 4px; }
+
+  /* ---------- galeria ---------- */
+  .galeria-topo { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .galeria-topo .intro { margin-bottom: 0; }
+  .setas { display: flex; gap: .6rem; }
+  .seta {
+    width: 52px; height: 52px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+    background: #fff; color: var(--marinho); box-shadow: inset 0 0 0 2px var(--marinho); transition: background-color .2s ease, color .2s ease, opacity .2s ease;
+  }
+  .seta:hover { background: var(--marinho); color: #fff; }
+  .seta:disabled { opacity: .35; cursor: default; background: #fff; color: var(--marinho); }
+  .seta svg { width: 1.4rem; height: 1.4rem; }
+  .galeria {
+    list-style: none; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 26%); gap: 1rem;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 1.5rem; overscroll-behavior-x: contain;
+    padding: .25rem 1.5rem 1rem; margin: 0 auto; max-width: var(--max); scrollbar-width: thin;
+  }
+  .galeria li { scroll-snap-align: start; }
+  .galeria .foto { aspect-ratio: 4 / 5; height: 100%; }
+
+  /* ---------- primeira vez ---------- */
+  .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr); gap: 1.5rem 4rem; align-items: start; }
+  .faq { border-bottom: 1px solid var(--linha); }
+  .faq details { border-top: 1px solid var(--linha); }
+  .faq summary {
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    min-height: 60px; padding: 1rem 0; cursor: pointer; list-style: none;
+    font-weight: 700; font-size: 1.2rem; line-height: 1.35; transition: color .25s ease;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary span { flex: 1; min-width: 0; }
+  .faq summary::after {
+    content: ""; flex: none; width: 2.25rem; height: 2.25rem; border-radius: 50%;
+    background-color: var(--ceu);
+    background-image: linear-gradient(var(--azul), var(--azul)), linear-gradient(var(--azul), var(--azul));
+    background-size: 14px 2px, 2px 14px; background-position: center; background-repeat: no-repeat;
+    transition: background-color .25s ease;
+  }
+  .faq details[open] summary::after { background-color: var(--azul); background-image: linear-gradient(#fff, #fff); background-size: 14px 2px; }
+  .faq summary:hover { color: var(--azul); }
+  .faq details p { color: var(--tinta-2); padding: 0 3.25rem 1.4rem 0; max-width: 60ch; }
+
+  /* ---------- onde fica ---------- */
+  .mapas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+  .mapas h3 { font-size: 1.4rem; margin-bottom: .25rem; }
+  .mapas p { color: var(--tinta-2); margin-bottom: 1rem; }
+  .mapa { width: 100%; aspect-ratio: 4 / 3; border: 0; border-radius: var(--raio); display: block; background: var(--ceu); }
+  .horario { margin-top: .5rem; font-variant-numeric: tabular-nums; }
+  .horario div { display: flex; flex-wrap: wrap; column-gap: 1.5rem; padding: .15rem 0; }
+  .horario dt { color: var(--tinta-2); min-width: min(9.5em, 100%); }
+  .horario dd { font-weight: 700; }
+
+  footer { background: var(--marinho); color: #E3E9F3; padding: 2.5rem 0 6.5rem; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem 2rem; flex-wrap: wrap; }
+  footer strong { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 1.5rem; color: #fff; }
+  footer p { margin-top: .35rem; }
+  footer a { display: inline-block; padding: .7rem 0; font-weight: 700; text-decoration: none; }
+  footer a:hover { text-decoration: underline; text-underline-offset: 5px; }
+  footer :focus-visible { outline-color: #fff; }
+  .rede { display: inline-flex; align-items: center; gap: .6rem; }
+  .rede svg { width: 1.75rem; height: 1.75rem; flex: none; }
+  .copy { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.16); font-size: 1rem; color: #B8C4D8; }
+
+  .dock { display: none; }
+  .zap-flutuante {
+    position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 9;
+    padding: .75rem 1.35rem .75rem 1.1rem; box-shadow: 0 6px 20px rgba(15,41,87,.28);
+    transition: opacity .3s ease, transform .3s ease, visibility .3s, background-color .25s ease;
+  }
+  .zap-flutuante.is-hidden { opacity: 0; transform: translateY(1rem); visibility: hidden; }
+
+  /* ---------- tablet ---------- */
+  @media (max-width: 900px) {
+    .hero > .wrap { grid-template-columns: minmax(0, 1fr); }
+    .mosaico { aspect-ratio: 16 / 10; }
+    .pedido, .faq-grid, .unidades, .mapas { grid-template-columns: minmax(0, 1fr); }
+    .mensagem { position: static; }
+    .avaliacoes { grid-template-columns: minmax(0, 1fr); }
+    .galeria { grid-auto-columns: minmax(220px, 40%); }
+    .mapa { aspect-ratio: 16 / 10; }
+  }
+
+  /* ---------- celular ---------- */
+  @media (max-width: 640px) {
+    body { font-size: 1.1875rem; }
+    .topo nav { display: none; }
+    .logo img { height: 60px; }
+    .hero { padding: 1.75rem 0 3rem; }
+    .hero .lead { font-size: 1.2rem; }
+    .botoes .btn { flex: 1 1 100%; }
+    .mosaico { aspect-ratio: 1 / 1; gap: .6rem; }
+    .mosaico .foto { padding: .6rem; }
+    .mosaico .foto:not(:first-child) span { display: none; }
+    section { padding: 3.25rem 0; }
+    .unidade { padding: 1.5rem 1.25rem; }
+    .unidade .acoes .btn { flex: 1 1 100%; }
+    .galeria { grid-auto-columns: 72%; scroll-padding-left: 1rem; padding-left: 1rem; padding-right: 1rem; }
+    .setas { display: none; }
+    .faixa .btn { width: 100%; }
+    .faq details p { padding-right: 0; }
+  }
+  @media (max-height: 500px) and (pointer: coarse) {
+    .topo nav { display: none; }
+    .hero { padding: 1.5rem 0 2rem; }
+  }
+
+  /* barra fixa: celular em pe ou deitado, e tablet de toque */
+  @media (max-width: 640px), (max-height: 500px) and (pointer: coarse), (max-width: 900px) and (pointer: coarse) {
+    .dock {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .5rem;
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+      padding: .6rem max(.75rem, env(safe-area-inset-left)) calc(.6rem + env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-right));
+      background: #fff; border-top: 1px solid var(--linha); box-shadow: 0 -4px 16px rgba(15,41,87,.08);
+    }
+    .dock .btn { min-height: 54px; padding: .5rem; gap: .4rem; font-size: clamp(1rem, 4.6vw, 1.15rem); }
+    .dock .icone { width: 1.25rem; height: 1.25rem; }
+    .zap-flutuante { display: none; }
+    footer { padding-bottom: calc(2.5rem + 80px + env(safe-area-inset-bottom)); }
+    html { scroll-padding-bottom: 96px; }
+  }
+  @media (max-height: 500px) and (pointer: coarse) {
+    .dock { padding-top: .4rem; padding-bottom: calc(.4rem + env(safe-area-inset-bottom)); }
+    .dock .btn { min-height: 46px; }
+    footer { padding-bottom: calc(2.5rem + 64px + env(safe-area-inset-bottom)); }
+  }
+  @media (max-width: 440px) { .dock .icone { display: none; } }
+  @media (max-width: 400px) {
+    .wrap { padding: 0 1rem; }
+    .btn { padding-left: 1rem; padding-right: 1rem; }
+    .mensagem { padding: 1.1rem; }
+    .logo span { font-size: 1.2rem; }
+  }
+  @media (max-width: 340px) {
+    .btn .icone { display: none; }
+    .dock { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+    .dock .btn { padding-left: .25rem; padding-right: .25rem; font-size: max(16px, .9rem); }
+    .galeria { grid-auto-columns: 85%; }
+    .opcao span { padding: .5rem .75rem; gap: .35rem; }
+    .logo small { display: none; }
+    /* Galaxy Fold fechado com fonte grande: palavra longa ("veterinaria") quebra em vez de vazar */
+    body * { overflow-wrap: anywhere; }
+    h2 { font-size: 1.75rem; }
+    .unidade { padding: 1.1rem .9rem; }
+    .unidade h3 { font-size: 1.5rem; }
+    .faq summary::after { width: 1.75rem; height: 1.75rem; }
+  }
+
+  @media print { .zap-flutuante, .dock { display: none !important; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- icones usados varias vezes: WhatsApp (logo oficial), telefone e camera -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-zap" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.51-5.260c.001-5.450 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.450-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-foto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.8l1.4-2h6.6l1.4 2h1.8A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.8"/></g></symbol>
+</svg>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="#"><img src="logo.webp" width="66" height="72" alt=""><span translate="no">RB Vet<small>Clínica e pet shop</small></span></a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#unidades">Unidades</a></li>
+        <li><a href="#pedido">Agendar</a></li>
+        <li><a href="#duvidas">Primeira vez?</a></li>
+        <li><a href="#onde">Onde fica</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="status" data-status>Clínica: seg a sex 9h às 18h, sáb 9h às 13h30</p>
+        <h1>Veterinária e pet shop em Cravinhos.</h1>
+        <p class="lead">Consulta, vacina e atendimento em casa na clínica. Banho e tosa no pet shop. Escolha o que o seu pet precisa e mande pelo WhatsApp.</p>
+        <p class="nota"><span class="estrelas" aria-hidden="true">★★★★★</span> Clínica com nota <strong>5,0</strong> no Google (28 avaliações)</p>
+        <div class="botoes">
+          <a class="btn btn-zap" href="#pedido">
+            <svg class="icone" aria-hidden="true"><use href="#i-zap"/></svg>
+            Montar o pedido
+          </a>
+          <a class="btn btn-tel" href="tel:+5516974034986">Ligar para a clínica</a>
+        </div>
+      </div>
+      <div class="mosaico">
+        <div class="foto" role="img" aria-label="Espaço para foto da equipe de veterinárias">
+          <div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>A equipe</strong><span>foto enviada pela RB Vet</span></div>
+        </div>
+        <div class="foto" role="img" aria-label="Espaço para foto da clínica">
+          <div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>A clínica</strong><span>foto enviada pela RB Vet</span></div>
+        </div>
+        <div class="foto" role="img" aria-label="Espaço para foto de um banho no pet shop">
+          <div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>Banho no pet shop</strong><span>foto enviada pela RB Vet</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="faixa">
+    <div class="wrap">
+      <div>
+        <p>Seu gato odeia sair de casa? A veterinária vai até você.</p>
+        <div class="sub">A RB Vet faz atendimento em casa. Marque no pedido e combine o horário.</div>
+      </div>
+      <a class="btn btn-claro" href="#pedido" data-casa>
+        <svg class="icone" aria-hidden="true"><use href="#i-zap"/></svg>
+        Pedir atendimento em casa
+      </a>
+    </div>
+  </div>
+
+  <section id="unidades" class="alt">
+    <div class="wrap">
+      <h2>Duas unidades, um cuidado só</h2>
+      <p class="intro">A clínica cuida da saúde. O pet shop cuida do banho e do que o seu bicho come e usa.</p>
+      <div class="unidades">
+        <div class="unidade">
+          <span class="qual">Unidade 1</span>
+          <h3>Clínica veterinária</h3>
+          <p class="onde">Rua XV de Novembro, 791, Centro</p>
+          <p class="status" data-status>Seg a sex 9h às 18h, sáb 9h às 13h30</p>
+          <ul>
+            <li>Consultas para cães, gatos e animais de grande porte</li>
+            <li>Vacinação</li>
+            <li>Cirurgia</li>
+            <li>Atendimento em casa</li>
+            <li>Remédios, brinquedos e acessórios</li>
+          </ul>
+          <div class="acoes">
+            <a class="btn btn-tel" href="tel:+5516974034986">
+              <svg class="icone" aria-hidden="true"><use href="#i-tel"/></svg>
+              (16)&nbsp;97403-4986
+            </a>
+          </div>
+        </div>
+        <div class="unidade pet">
+          <span class="qual">Unidade 2</span>
+          <h3>Pet shop</h3>
+          <p class="onde">Av. Pedro Duarte Amoroso, 156</p>
+          <p>Horário: <span class="a-preencher">a confirmar com a loja</span></p>
+          <ul>
+            <li>Banho e tosa</li>
+            <li>Ração e petiscos</li>
+            <li>Acessórios</li>
+          </ul>
+          <div class="acoes">
+            <a class="btn btn-zap" href="https://wa.me/5516996148486">
+              <svg class="icone" aria-hidden="true"><use href="#i-zap"/></svg>
+              (16)&nbsp;99614-8486
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pedido">
+    <div class="wrap">
+      <h2>Monte o pedido</h2>
+      <p class="intro">Toque nas opções. A mensagem pro WhatsApp se escreve sozinha e já diz pra qual unidade é.</p>
+      <!-- todos os pedidos vao pro WhatsApp (16) 99614-8486, o unico confirmado como da RB Vet.
+           Se a clinica tiver WhatsApp proprio, trocar o numero dos servicos da clinica em ZAP_CLINICA. -->
+      <form class="pedido" action="https://wa.me/5516996148486" method="get" data-pedido>
+        <div>
+          <fieldset>
+            <legend>Do que o seu pet precisa?</legend>
+            <div class="opcoes">
+              <label class="opcao"><input type="radio" name="servico" value="consulta" data-unidade="clinica" checked><span>Consulta</span></label>
+              <label class="opcao"><input type="radio" name="servico" value="vacina" data-unidade="clinica"><span>Vacina</span></label>
+              <label class="opcao"><input type="radio" name="servico" value="atendimento em casa" data-unidade="clinica"><span>Atendimento em casa</span></label>
+              <label class="opcao"><input type="radio" name="servico" value="banho" data-unidade="pet"><span>Banho</span></label>
+              <label class="opcao"><input type="radio" name="servico" value="banho e tosa" data-unidade="pet"><span>Banho e tosa</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Quem é o pet?</legend>
+            <div class="opcoes">
+              <label class="opcao"><input type="radio" name="bicho" value="cachorro" checked><span>Cachorro</span></label>
+              <label class="opcao"><input type="radio" name="bicho" value="gato"><span>Gato</span></label>
+              <label class="opcao"><input type="radio" name="bicho" value="outro"><span>Outro</span></label>
+            </div>
+          </fieldset>
+          <fieldset data-porte hidden>
+            <legend>Porte</legend>
+            <div class="opcoes">
+              <label class="opcao"><input type="radio" name="porte" value="pequeno" checked><span>Pequeno</span></label>
+              <label class="opcao"><input type="radio" name="porte" value="médio"><span>Médio</span></label>
+              <label class="opcao"><input type="radio" name="porte" value="grande"><span>Grande</span></label>
+            </div>
+          </fieldset>
+          <label class="nome-pet" for="nome">Nome do pet <span style="font-weight:400;color:var(--tinta-2)">(opcional)</span></label>
+          <input id="nome" name="nome" type="text" autocomplete="off" maxlength="30" placeholder="Ex.: Paçoca…">
+        </div>
+        <div class="mensagem">
+          <h3>Sua mensagem</h3>
+          <p class="destino" data-destino><span><strong>Clínica veterinária</strong>Rua XV de Novembro, 791</span></p>
+          <output class="balao" for="nome" aria-live="polite" data-balao>Oi! Quero marcar uma consulta para o meu cachorro.</output>
+          <input type="hidden" name="text" value="Oi! Quero marcar uma consulta para o meu cachorro." data-texto>
+          <button class="btn btn-zap" type="submit">
+            <svg class="icone" aria-hidden="true"><use href="#i-zap"/></svg>
+            Mandar no WhatsApp
+          </button>
+          <small>Abre o WhatsApp com a mensagem pronta. A RB Vet responde com o horário e o valor.</small>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2>Quem já levou, recomenda</h2>
+      <p class="intro">Avaliações da clínica no Google.</p>
+      <ul class="avaliacoes">
+        <li><blockquote>“Veterinárias muito atenciosas e competentes, super recomendo!”</blockquote><cite>Thaís, no primeiro atendimento do gato</cite></li>
+        <li><blockquote>“O atendimento a domicílio ajuda muito quem tem gatinhos.”</blockquote><cite>Bianca</cite></li>
+        <li><blockquote>“Serviço muito bom, trata super bem os animais.”</blockquote><cite>Bernardino</cite></li>
+      </ul>
+      <p class="avaliacoes-fonte"><a href="https://www.google.com/maps/search/RB+VET+Cl%C3%ADnica+Veterin%C3%A1ria+Cravinhos">Ver as 28 avaliações no Google</a></p>
+    </div>
+  </section>
+
+  <section id="fotos">
+    <div class="galeria-topo wrap">
+      <div>
+        <h2>Por dentro da RB Vet</h2>
+        <p class="intro">Arraste pro lado pra ver mais.</p>
+      </div>
+      <div class="setas" hidden data-setas>
+        <button class="seta" type="button" aria-label="Fotos anteriores" data-dir="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="seta" type="button" aria-label="Próximas fotos" data-dir="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <ul class="galeria" tabindex="0" aria-label="Galeria de fotos" data-galeria>
+      <li><div class="foto" role="img" aria-label="Espaço para foto de uma consulta"><div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>Na consulta</strong>foto enviada pela RB Vet</div></div></li>
+      <li><div class="foto" role="img" aria-label="Espaço para foto de vacinação"><div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>Dia de vacina</strong>foto enviada pela RB Vet</div></div></li>
+      <li><div class="foto" role="img" aria-label="Espaço para foto de atendimento em casa"><div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>Atendimento em casa</strong>foto enviada pela RB Vet</div></div></li>
+      <li><div class="foto" role="img" aria-label="Espaço para foto de antes do banho"><div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>Antes do banho</strong>foto enviada pela RB Vet</div></div></li>
+      <li><div class="foto" role="img" aria-label="Espaço para foto de depois do banho"><div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>Depois do banho</strong>foto enviada pela RB Vet</div></div></li>
+      <li><div class="foto" role="img" aria-label="Espaço para foto da tosa"><div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>Tosa pronta</strong>foto enviada pela RB Vet</div></div></li>
+      <li><div class="foto" role="img" aria-label="Espaço para foto do pet shop por dentro"><div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>O pet shop</strong>foto enviada pela RB Vet</div></div></li>
+      <li><div class="foto" role="img" aria-label="Espaço para foto da fachada da clínica"><div><svg aria-hidden="true"><use href="#i-foto"/></svg><strong>A fachada da clínica</strong>foto enviada pela RB Vet</div></div></li>
+    </ul>
+  </section>
+
+  <section id="duvidas" class="alt">
+    <div class="wrap faq-grid">
+      <div>
+        <h2>Primeira vez?</h2>
+        <p class="intro">O que quase todo mundo pergunta antes de levar o pet.</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary><span>Vocês atendem gato?</span></summary>
+          <p>Sim. A clínica atende cães, gatos e também animais de grande porte.</p>
+        </details>
+        <details>
+          <summary><span>Como funciona o atendimento em casa?</span></summary>
+          <p>A veterinária vai até a sua casa, o que ajuda muito com gato e com pet que estressa no carro. Monte o pedido acima e combine o horário. Bairros e valor: <span class="a-preencher">a confirmar com a clínica</span>.</p>
+        </details>
+        <details>
+          <summary><span>Quanto custa a consulta?</span></summary>
+          <p>Monte o pedido e a RB Vet responde com o valor pelo WhatsApp.</p>
+        </details>
+        <details>
+          <summary><span>Onde é o banho e tosa?</span></summary>
+          <p>No pet shop, a unidade 2: Av. Pedro Duarte Amoroso, 156.</p>
+        </details>
+        <details>
+          <summary><span>O Bicho é o Bicho mudou de nome?</span></summary>
+          <p>Sim. O pet shop da Av. Pedro Duarte Amoroso, 156 agora é a RB Vet Pet Shop, unidade 2. O endereço e o WhatsApp continuam os mesmos.</p>
+        </details>
+        <details>
+          <summary><span>Atendem emergência?</span></summary>
+          <p><span class="a-preencher">A confirmar com a clínica.</span></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="onde">
+    <div class="wrap">
+      <h2>Onde fica</h2>
+      <p class="intro">As duas unidades ficam a poucos minutos uma da outra.</p>
+      <div class="mapas">
+        <div>
+          <h3>Clínica veterinária</h3>
+          <p>Rua XV de Novembro, 791, Centro</p>
+          <iframe class="mapa" title="Mapa: RB Vet clínica, Rua XV de Novembro, 791, Cravinhos"
+            src="https://www.google.com/maps?q=Rua+XV+de+Novembro,+791,+Cravinhos,+SP&amp;output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <dl class="horario">
+            <div><dt>Segunda a sexta</dt><dd>9h às 18h</dd></div>
+            <div><dt>Sábado</dt><dd>9h às 13h30</dd></div>
+            <div><dt>Domingo</dt><dd>Fechado</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h3>Pet shop</h3>
+          <p>Av. Pedro Duarte Amoroso, 156</p>
+          <iframe class="mapa" title="Mapa: RB Vet pet shop, Av. Pedro Duarte Amoroso, 156, Cravinhos"
+            src="https://www.google.com/maps?q=Av.+Pedro+Duarte+Amoroso,+156,+Cravinhos,+SP&amp;output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <p style="margin-top:.5rem">Horário: <span class="a-preencher">a confirmar com a loja</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <strong translate="no">RB Vet</strong>
+      <p>Clínica: Rua XV de Novembro, 791, Centro, Cravinhos, SP</p>
+      <p>Pet shop: Av. Pedro Duarte Amoroso, 156, Cravinhos, SP</p>
+    </div>
+    <a class="rede" href="https://www.facebook.com/bichoeobicho/">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+      Facebook
+    </a>
+  </div>
+  <p class="wrap copy">© 2026 RB Vet. Todos os direitos reservados.</p>
+</footer>
+
+<nav class="dock" aria-label="Contato rápido">
+  <a class="btn btn-tel" href="tel:+5516974034986"><svg class="icone" aria-hidden="true"><use href="#i-tel"/></svg>Ligar</a>
+  <a class="btn btn-zap" href="https://wa.me/5516996148486" data-zap><svg class="icone" aria-hidden="true"><use href="#i-zap"/></svg>WhatsApp</a>
+</nav>
+
+<a class="btn btn-zap zap-flutuante is-hidden" href="https://wa.me/5516996148486" data-zap>
+  <svg class="icone" aria-hidden="true"><use href="#i-zap"/></svg>
+  WhatsApp
+</a>
+
+<script>
+(function () {
+  var ZAP_PET = 'https://wa.me/5516996148486?text=';
+  var ZAP_CLINICA = ZAP_PET;   /* trocar se a clinica confirmar WhatsApp proprio */
+
+  /* "Aberto agora" da clinica: seg a sex 9h-18h, sab 9h-13h30, horario de Brasilia. Nao considera feriados. */
+  var els = document.querySelectorAll('[data-status]');
+  var atualizaStatus = function () {
+    var parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+    var get = function (t) { for (var i = 0; i < parts.length; i++) if (parts[i].type === t) return parts[i].value; };
+    var dia = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+    var hora = (+get('hour') % 24) + (+get('minute')) / 60;
+    var fecha = dia >= 1 && dia <= 5 ? 18 : dia === 6 ? 13.5 : 0;
+    var aberto = fecha > 0 && hora >= 9 && hora < fecha;
+    var ate = fecha === 13.5 ? '13h30' : fecha + 'h';
+    var msg = aberto ? 'Clínica aberta agora, até as ' + ate
+      : (fecha > 0 && hora < 9) ? 'Clínica fechada agora. Abre hoje às 9h'
+      : (dia >= 0 && dia <= 4) ? 'Clínica fechada agora. Abre amanhã às 9h'
+      : dia === 5 ? 'Clínica fechada agora. Abre sábado às 9h'
+      : 'Clínica fechada agora. Abre segunda às 9h';
+    for (var i = 0; i < els.length; i++) { els[i].textContent = msg; els[i].classList.toggle('is-open', aberto); }
+  };
+  if (els.length && window.Intl) { atualizaStatus(); setInterval(atualizaStatus, 60000); }
+
+  /* Monte o pedido: servico decide a unidade; porte so aparece pro banho.
+     Sem script, o formulario manda a mensagem padrao do campo escondido. */
+  var form = document.querySelector('[data-pedido]');
+  if (form) {
+    var balao = form.querySelector('[data-balao]'), texto = form.querySelector('[data-texto]');
+    var destino = form.querySelector('[data-destino]'), porte = form.querySelector('[data-porte]');
+    var url = ZAP_CLINICA;
+    var escreve = function () {
+      var s = form.querySelector('[name="servico"]:checked');
+      var ehPet = s.getAttribute('data-unidade') === 'pet';
+      var bicho = form.querySelector('[name="bicho"]:checked').value;
+      var nome = form.nome.value.trim();
+      porte.hidden = !ehPet;
+      var quem = bicho === 'outro' ? 'o meu pet' : 'o meu ' + bicho;
+      var msg;
+      if (s.value === 'consulta') msg = 'Oi! Quero marcar uma consulta para ' + quem + '.';
+      else if (s.value === 'vacina') msg = 'Oi! Quero vacinar ' + quem + '.';
+      else if (s.value === 'atendimento em casa') msg = 'Oi! Queria atendimento veterinário em casa para ' + quem + '.';
+      else msg = 'Oi! Quero agendar ' + s.value + ' no pet shop para ' + quem + ', porte ' + form.querySelector('[name="porte"]:checked').value + '.';
+      /* sem artigo antes do nome: nao da pra saber se o pet e macho ou femea */
+      if (nome) msg += ' Nome: ' + nome + '.';
+      destino.classList.toggle('pet', ehPet);
+      destino.innerHTML = ehPet
+        ? '<span><strong>Pet shop</strong>Av. Pedro Duarte Amoroso, 156</span>'
+        : '<span><strong>Clínica veterinária</strong>Rua XV de Novembro, 791</span>';
+      balao.textContent = msg;
+      texto.value = msg;
+      url = ehPet ? ZAP_PET : ZAP_CLINICA;
+      var links = document.querySelectorAll('[data-zap]');
+      for (var i = 0; i < links.length; i++) links[i].href = url + encodeURIComponent(msg);
+    };
+    form.addEventListener('change', escreve);
+    form.addEventListener('input', escreve);
+    form.addEventListener('submit', function (e) { e.preventDefault(); escreve(); window.open(url + encodeURIComponent(texto.value), '_blank', 'noopener'); });
+    /* "Pedir atendimento em casa" na faixa: ja marca o servico e leva ate o pedido */
+    var casa = document.querySelector('[data-casa]');
+    if (casa) casa.addEventListener('click', function () {
+      form.querySelector('[value="atendimento em casa"]').checked = true; escreve();
+    });
+    escreve();
+  }
+
+  /* Galeria: setas no computador, uma foto por vez (posicao exata, sem brigar com o scroll-snap) */
+  var gal = document.querySelector('[data-galeria]'), setas = document.querySelector('[data-setas]');
+  if (gal && setas) {
+    setas.hidden = false;
+    var bts = setas.querySelectorAll('button');
+    var alvo = function (dir) {
+      var lis = gal.querySelectorAll('li'), pad = parseFloat(getComputedStyle(gal).scrollPaddingLeft) || 0;
+      var base = gal.getBoundingClientRect().left, atual = gal.scrollLeft, pos = [];
+      for (var i = 0; i < lis.length; i++) pos.push(lis[i].getBoundingClientRect().left - base + atual - pad);
+      if (dir > 0) { for (i = 0; i < pos.length; i++) if (pos[i] > atual + 4) return pos[i]; return gal.scrollWidth; }
+      for (i = pos.length - 1; i >= 0; i--) if (pos[i] < atual - 4) return pos[i]; return 0;
+    };
+    var estado = function () {
+      bts[0].disabled = gal.scrollLeft <= 2;
+      bts[1].disabled = gal.scrollLeft + gal.clientWidth >= gal.scrollWidth - 2;
+    };
+    for (var i = 0; i < bts.length; i++) bts[i].addEventListener('click', function () {
+      gal.scrollTo({ left: alvo(+this.getAttribute('data-dir')), behavior: 'smooth' });
+    });
+    gal.addEventListener('scroll', estado, { passive: true });
+    window.addEventListener('resize', estado);
+    estado();
+  }
+
+  /* WhatsApp flutuante (computador): aparece quando o botao da abertura nao esta inteiro na tela */
+  var btn = document.querySelector('.zap-flutuante'), topo = document.querySelector('.botoes .btn-zap');
+  if (btn && topo) {
+    var atualiza = function () {
+      var r = topo.getBoundingClientRect();
+      btn.classList.toggle('is-hidden', r.top >= 0 && r.bottom <= window.innerHeight);
+    };
+    window.addEventListener('scroll', atualiza, { passive: true });
+    window.addEventListener('resize', atualiza);
+    atualiza();
+  }
+})();
+</script>
+</body>
+</html>
